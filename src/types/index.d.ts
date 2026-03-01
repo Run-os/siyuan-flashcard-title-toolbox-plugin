@@ -123,7 +123,18 @@ interface Window {
     languages: any;
   };
   _sy_plugin_sample: {
+    aiService: any;
+    flashcardService: any;
+    plugin: any;
+    saveSettings: (settings: any) => Promise<void>;
+    loadSettings: () => Promise<any>;
+    openSetting: () => void;
     [key: string]: any;
+  };
+  _sy_plugin_flashcard_toolbox?: {
+    i18n: {
+      [key: string]: string;
+    };
   };
 }
 

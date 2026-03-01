@@ -1,3 +1,32 @@
 {
-  "addTopBarIcon": "PluginSampleViteVue"
+  "addTopBarIcon": "PluginSampleViteVue",
+  "generateAllTitles": "Generate All Flashcard Titles",
+  "generateTitle": "Generate Flashcard Title",
+  "generateFlashcards": "Generate Flashcards from Headings",
+  "ai": {
+    "baseUrl": "API Base URL",
+    "baseUrlPlaceholder": "e.g. https://api.openai.com",
+    "apiKey": "API Key",
+    "apiKeyPlaceholder": "Enter your API key",
+    "model": "Model",
+    "modelPlaceholder": "e.g. gpt-3.5-turbo",
+    "prompt": "Prompt",
+    "promptPlaceholder": "Enter custom prompt...",
+    "promptHint": "Use {content} as placeholder for flashcard content",
+    "testConnection": "Test Connection",
+    "testing": "Testing...",
+    "save": "Save Settings",
+    "connectionSuccess": "Connection successful",
+    "connectionFailed": "Connection failed",
+    "connectionError": "Connection error",
+    "saveSuccess": "Settings saved",
+    "saveFailed": "Save failed"
+  },
+  "noActiveBlock": "No active block selected",
+  "generatedCards": "Generated {count} flashcards",
+  "generateError": "Generation failed",
+  "noAISettings": "Please configure AI settings first",
+  "titlesGenerated": "Generated {success}/{total} titles",
+  "titleGenerated": "Title generated successfully",
+  "blockNotFound": "Block not found"
 }

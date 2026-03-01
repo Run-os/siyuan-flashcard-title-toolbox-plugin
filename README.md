@@ -1,147 +1,73 @@
-# Siyuan Plugin Template - Vite & Vue3
+# 闪卡工具箱 (Flashcard Toolbox)
 
-[简体中文](./README_zh_CN.md)
+思源笔记闪卡增强插件，支持一键从标题生成闪卡，并使用 AI 自动生成闪卡标题。
 
-> Consistent with [siyuan/plugin-sample](https://github.com/siyuan-note/plugin-sample).
+## 功能特性
 
-1. Use Vite for packaging
-2. Use Vue3 for development
-3. Provides a github action template to automatically generate package.zip and upload to new release
-4. Provides a script to auto create tag and release. [link](#release-script)
+### 标题一键制卡
+- 读取当前文档的所有标题
+- 将最小标题下方的文本及标题设置为一个超级块，并制成闪卡
+- 自动处理标题层级，为有内容的标题和子标题分别创建闪卡
 
-> [!NOTE]
->
-> Before your start, you need install [NodeJS](https://nodejs.org/en/download) and [pnpm](https://pnpm.io/installation) first.
+**制卡规则：**
+- 标题自身带文本 → 单独一张卡
+- 每个有内容的子标题 → 各一张卡
+- 空标题 → 不制卡
 
-> [!WARNING]
->
-> For your first attempt, please do not modify anything. Load the plugin template in Siyuan as described below before making any changes.
->
-> For example, deleting README_zh_CN.md will also cause the plugin to fail to load.
+### AI 生成闪卡标题
+- 支持自定义 AI 配置（API 地址、密钥、模型、提示词）
+- 将整张闪卡内容发送给 AI，自动生成适合作为闪卡正面的问题
+- 生成的标题存储在 `flashcard-title` 字段中
+- 复习时自动读取该字段作为闪卡正面显示
 
-## Get started
+**两个修改标题的按钮：**
+1. **闪卡界面按钮**：只修改当前单张闪卡的 `flashcard-title` 字段
+2. **编辑器工具栏按钮**：依次修改当前文档内所有闪卡的超级块的 `flashcard-title` 字段
 
-1. Use the `Use the template` button to make a copy of this repo as template.  
-> [!WARNING]
->
-> That the repository name should match the plugin name, and the default branch must be `main`.
+## 使用说明
 
+### 一键制卡
+1. 在文档中编辑你的标题和内容
+2. 使用命令面板运行 `从标题生成闪卡` 命令
+3. 插件会自动为有内容的标题创建闪卡
 
-2. Use `git clone` to clone the copied repo to your computer.
-3. Use `pnpm i` to install the dependencies.
+### AI 生成标题
+1. 首先在设置中配置 AI 服务：
+   - 打开插件设置
+   - 设置 API 基础地址（如 `https://api.openai.com`）
+   - 输入 API 密钥
+   - 选择或输入模型名称（如 `gpt-3.5-turbo`）
+   - 自定义提示词（可选）
+2. 测试连接确保配置正确
+3. 使用工具栏按钮批量生成所有闪卡标题
+4. 或在闪卡界面单独生成当前卡片标题
 
-4. Copy the `.env.example` file as `.env`, set the `VITE_SIYUAN_WORKSPACE_PATH` to your SiYuan workspace.
+## 配置说明
 
+### AI 设置
+- **API 基础地址**：AI 服务的 API 端点
+- **API 密钥**：用于认证的密钥
+- **模型**：使用的 AI 模型名称
+- **提示词**：用于生成闪卡标题的提示词模板，使用 `{content}` 作为闪卡内容的占位符
 
-> [!TIP]
->
-> If you prefer not to package the project directly into the workspace, you can use a `symbolic link` instead.
->
-> Writing directly into the Siyuan workspace allows you to sync via Siyuan's sync feature to other devices, while using a symbolic link will not be included in the sync.
->
-> This template does not provide specific details about symbolic links. For related information, please refer to [plugin-sample-vite-svelte](https://github.com/siyuan-note/plugin-sample-vite-svelte).
+### 默认提示词
+```
+请根据以下内容生成一个适合作为闪卡正面的问题，要求简洁明了：
 
-5. Use `pnpm dev` to run the project, you will see info like below
-
-  ```
-
-  > plugin-sample-vite-vue@0.0.1 dev /path/to/your/plugin-sample-vite-vue
-  > vite build --watch
-
-  mode=> production
-  env=> {
-    VITE_SIYUAN_WORKSPACE_PATH: '/path/to/siyuan/workspace',
-    VITE_DEV_DIST_DIR: ''
-  }
-
-  Siyuan workspace path is set:
-  /path/to/siyuan/workspace
-
-  Plugin will build to:
-  # ✅ the plugin will build into here
-  /path/to/siyuan/workspace/data/plugins/plugin-sample-vite-vue
-
-  isWatch=> true
-  distDir=> /path/to/siyuan/workspace/data/plugins/plugin-sample-vite-vue
-  vite v6.3.5 building for production...
-
-  watching for file changes...
-
-  build started...
-  ✓ 26 modules transformed.
-  rendering chunks (1)...LiveReload enabled
-  ../../Siyuan-plugin/data/plugins/plugin-sample-vite-vue/index.css    1.08 kB │ gzip:  0.41 kB
-  ../../Siyuan-plugin/data/plugins/plugin-sample-vite-vue/index.js   198.60 kB │ gzip: 46.59 kB
-  [vite-plugin-static-copy] Copied 7 items.
-  built in 502ms.
-  ```
-
-
-   If successed, restart your siyuan, and you will find the plugin in `Siyuan - Settings - Marketplace`, named as `plugin-sample-vite-vue`.
-6. Enable the plugin, and check the `App.vue` file to start your development.
-   
-   This file contains some example codes.
-
-
-> [!TIP]
->
-> More plugin code examples, please check [siyuan/plugin-sample/src/index.ts](https://github.com/siyuan-note/plugin-sample/blob/main/src/index.ts)
-
-
-
-## List on the Marketplace
-
-### Use Github Action
-
-1. You can create a new tag, use your new version number as the `Tag version` in your local.
-2. Then push the tag to Github. The Github Action will create a new Release for you.
-
-> [!TIP]
->
-> <div id="release-script"></div>This template provided a script to auto create tag and release. You can use `pnpm release` to create a patch version.
->
-> You can add `--mode=manual|patch|minor|major` arg to set release mode, or run with arg like `pnpm release:manual`. 
-> 
-> All the scripts please see the `package.json` file.
-
-The github action is included in this sample, you can use it to publish your new realse to marketplace automatically:
-
-1. In your repo setting page `https://github.com/OWNER/REPO/settings/actions`, down to Workflow Permissions and open the configuration like this:
-
-![img](./asset/action.png)
-
-2. Push a tag in the format `v*` and github will automatically create a new release with new bulit package.zip
-3. By default, it will only publish a pre-release, if you don't think this is necessary, change the settings in release.yml
-
-```yaml
-- name: Release
-    uses: ncipollo/release-action@v1
-    with.
-        allowUpdates: true
-        artifactErrorsFailBuild: true
-        artifacts: 'package.zip'
-        token: ${{ secrets.GITHUB_TOKEN }}
-        prerelease: true # change this to false
+{content}
 ```
 
-### Manual
+## 技术实现
 
-1. Use `pnpm build` to generate `package.zip`
-2. Create a new Github release using your new version number as the "Tag version". See here for an example: https://github.com/siyuan-note/plugin-sample/releases
-3. Upload the file package.zip as binary attachments
-4. Publish the release
+### 数据存储
+- 闪卡标题存储在块的 `flashcard-title` 属性中
+- 闪卡通过 `custom-riff-decks` 属性标识
+- 使用超级块包装标题和内容
 
-> [!NOTE]
-> If it is the first release, please create a pull request to the [Community Bazaar](https://github.com/siyuan-note/bazaar) repository and modify the plugins.json file in it. This file is the index of all community plugin repositories, the format is:
+### 兼容性
+- 支持思源笔记 2.10.14 及以上版本
+- 支持所有前端（桌面端、移动端、浏览器端）
+- 支持所有后端
 
-```json
-{
-  "repos": [
-    "username/reponame"
-  ]
-}
-```
-
----
-
-More other plugin info, please check in [siyuan/plugin-sample](https://github.com/siyuan-note/plugin-sample).
+## 许可证
+MIT

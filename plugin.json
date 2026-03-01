@@ -1,10 +1,10 @@
 {
-  "name": "plugin-sample-vite-vue",
-  "author": "wetoria",
-  "url": "https://github.com/Wetoria/plugin-sample-vite-vue",
-  "version": "0.0.1",
+  "name": "siyuan-flashcard-toolbox",
+  "author": "",
+  "url": "",
+  "version": "0.1.0",
   "minAppVersion": "2.10.14",
-  "disabledInPublish": true,
+  "disabledInPublish": false,
   "backends": [
     "all"
   ],
@@ -12,14 +12,14 @@
     "all"
   ],
   "displayName": {
-    "default": "plugin-sample-vite-vue",
-    "en_US": "plugin-sample-vite-vue",
-    "zh_CN": "plugin-sample-vite-vue"
+    "default": "Flashcard Toolbox",
+    "en_US": "Flashcard Toolbox",
+    "zh_CN": "闪卡工具箱"
   },
   "description": {
-    "default": "plugin-sample-vite-vue",
-    "en_US": "plugin-sample-vite-vue",
-    "zh_CN": "plugin-sample-vite-vue"
+    "default": "Generate flashcards from headings and use AI to generate flashcard titles",
+    "en_US": "Generate flashcards from headings and use AI to generate flashcard titles",
+    "zh_CN": "从标题一键生成闪卡，支持 AI 自动生成闪卡标题"
   },
   "readme": {
     "default": "README.md",
@@ -29,5 +29,10 @@
   "funding": {
     "custom": []
   },
-  "keywords": []
+  "keywords": [
+    "flashcard",
+    "study",
+    "learning",
+    "AI"
+  ]
 }
