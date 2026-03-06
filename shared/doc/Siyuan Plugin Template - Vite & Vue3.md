@@ -47,7 +47,7 @@
 
   ```
 
-  > plugin-sample-vite-vue@0.0.1 dev /path/to/your/plugin-sample-vite-vue
+  > siyuan-flashcard-title-toolbox-plugin@0.0.1 dev /path/to/your/siyuan-flashcard-title-toolbox-plugin
   > vite build --watch
 
   mode=> production
@@ -60,10 +60,10 @@
 
   Plugin will build to:
   # ✅ 插件将会构建至下面的位置
-  /path/to/siyuan/workspace/data/plugins/plugin-sample-vite-vue
+  /path/to/siyuan/workspace/data/plugins/siyuan-flashcard-title-toolbox-plugin
 
   isWatch=> true
-  distDir=> /path/to/siyuan/workspace/data/plugins/plugin-sample-vite-vue
+  distDir=> /path/to/siyuan/workspace/data/plugins/siyuan-flashcard-title-toolbox-plugin
   vite v6.3.5 building for production...
 
   watching for file changes...
@@ -71,13 +71,13 @@
   build started...
   ✓ 26 modules transformed.
   rendering chunks (1)...LiveReload enabled
-  ../../Siyuan-plugin/data/plugins/plugin-sample-vite-vue/index.css    1.08 kB │ gzip:  0.41 kB
-  ../../Siyuan-plugin/data/plugins/plugin-sample-vite-vue/index.js   198.60 kB │ gzip: 46.59 kB
+  ../../Siyuan-plugin/data/plugins/siyuan-flashcard-title-toolbox-plugin/index.css    1.08 kB │ gzip:  0.41 kB
+  ../../Siyuan-plugin/data/plugins/siyuan-flashcard-title-toolbox-plugin/index.js   198.60 kB │ gzip: 46.59 kB
   [vite-plugin-static-copy] Copied 7 items.
   built in 502ms.
   ```
 
-   刷新思源，你将会在 `思源 - 设置 - 集市` 中看到名为 `plugin-sample-vite-vue` 的插件。
+   刷新思源，你将会在 `思源 - 设置 - 集市` 中看到名为 `siyuan-flashcard-title-toolbox-plugin` 的插件。
    
 6. 启用插件, 并检查 `App.vue` 文件进行开发。
 

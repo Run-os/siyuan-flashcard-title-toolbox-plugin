@@ -1,7 +1,7 @@
 {
-  "name": "plugin-sample-vite-vue",
-  "author": "wetoria",
-  "url": "https://github.com/Wetoria/plugin-sample-vite-vue",
+  "name": "siyuan-flashcard-title-toolbox-plugin",
+  "author": "Run-os",
+  "url": "https://github.com/Run-os/siyuan-flashcard-title-toolbox-plugin",
   "version": "0.0.1",
   "minAppVersion": "2.10.14",
   "disabledInPublish": true,
@@ -12,14 +12,14 @@
     "all"
   ],
   "displayName": {
-    "default": "plugin-sample-vite-vue",
-    "en_US": "plugin-sample-vite-vue",
-    "zh_CN": "plugin-sample-vite-vue"
+    "default": "Flashcard Title Toolbox",
+    "en_US": "Flashcard Title Toolbox",
+    "zh_CN": "闪卡标题工具箱"
   },
   "description": {
-    "default": "plugin-sample-vite-vue",
-    "en_US": "plugin-sample-vite-vue",
-    "zh_CN": "plugin-sample-vite-vue"
+    "default": "A toolbox for managing flashcard titles in SiYuan Note",
+    "en_US": "A toolbox for managing flashcard titles in SiYuan Note",
+    "zh_CN": "思源笔记中管理闪卡标题的工具箱"
   },
   "readme": {
     "default": "README.md",

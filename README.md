@@ -1,147 +1,100 @@
-# Siyuan Plugin Template - Vite & Vue3
+# 思源闪卡标题工具箱
 
-[简体中文](./README_zh_CN.md)
+思源笔记中管理闪卡标题的工具箱插件。帮助您自定义、编辑和管理闪卡标题。
 
-> Consistent with [siyuan/plugin-sample](https://github.com/siyuan-note/plugin-sample).
+## 功能特性
 
-1. Use Vite for packaging
-2. Use Vue3 for development
-3. Provides a github action template to automatically generate package.zip and upload to new release
-4. Provides a script to auto create tag and release. [link](#release-script)
+- **自定义闪卡标题** - 为闪卡设置自定义标题，便于复习时快速识别
+- **快捷编辑按钮** - 在编辑器中的闪卡上直接添加编辑按钮
+- **实时预览** - 复习闪卡时显示自定义标题
+- **无缝集成** - 与思源原生闪卡系统完美配合，不影响原始内容
 
-> [!NOTE]
->
-> Before your start, you need install [NodeJS](https://nodejs.org/en/download) and [pnpm](https://pnpm.io/installation) first.
+## 安装方式
 
-> [!WARNING]
->
-> For your first attempt, please do not modify anything. Load the plugin template in Siyuan as described below before making any changes.
->
-> For example, deleting README_zh_CN.md will also cause the plugin to fail to load.
+### 从集市安装
 
-## Get started
+1. 打开思源笔记
+2. 进入 `设置` → `集市`
+3. 搜索 "闪卡标题工具箱"
+4. 点击安装
 
-1. Use the `Use the template` button to make a copy of this repo as template.  
-> [!WARNING]
->
-> That the repository name should match the plugin name, and the default branch must be `main`.
+### 手动安装
 
+1. 从 [Releases](https://github.com/Run-os/siyuan-flashcard-title-toolbox-plugin/releases) 下载最新的 `package.zip`
+2. 解压到思源工作空间：`{工作空间}/data/plugins/siyuan-flashcard-title-toolbox-plugin/`
+3. 重启思源笔记
+4. 在 `设置` → `集市` 中启用插件
 
-2. Use `git clone` to clone the copied repo to your computer.
-3. Use `pnpm i` to install the dependencies.
+## 使用方法
 
-4. Copy the `.env.example` file as `.env`, set the `VITE_SIYUAN_WORKSPACE_PATH` to your SiYuan workspace.
+### 编辑闪卡标题
 
+1. 在编辑器中找到闪卡块（带有闪卡图标的块）
+2. 点击闪卡上出现的编辑按钮（✏️）
+3. 在弹窗中输入自定义标题
+4. 点击保存
 
-> [!TIP]
->
-> If you prefer not to package the project directly into the workspace, you can use a `symbolic link` instead.
->
-> Writing directly into the Siyuan workspace allows you to sync via Siyuan's sync feature to other devices, while using a symbolic link will not be included in the sync.
->
-> This template does not provide specific details about symbolic links. For related information, please refer to [plugin-sample-vite-svelte](https://github.com/siyuan-note/plugin-sample-vite-svelte).
+自定义标题将在复习闪卡时显示。
 
-5. Use `pnpm dev` to run the project, you will see info like below
+### 复习时显示
 
-  ```
+复习闪卡时，自定义标题将替换原有的标题文本，帮助您快速识别卡片内容。
 
-  > plugin-sample-vite-vue@0.0.1 dev /path/to/your/plugin-sample-vite-vue
-  > vite build --watch
+## 开发指南
 
-  mode=> production
-  env=> {
-    VITE_SIYUAN_WORKSPACE_PATH: '/path/to/siyuan/workspace',
-    VITE_DEV_DIST_DIR: ''
-  }
+### 环境要求
 
-  Siyuan workspace path is set:
-  /path/to/siyuan/workspace
+- [Node.js](https://nodejs.org/) (v18 或更高版本)
+- [pnpm](https://pnpm.io/installation)
 
-  Plugin will build to:
-  # ✅ the plugin will build into here
-  /path/to/siyuan/workspace/data/plugins/plugin-sample-vite-vue
+### 项目设置
 
-  isWatch=> true
-  distDir=> /path/to/siyuan/workspace/data/plugins/plugin-sample-vite-vue
-  vite v6.3.5 building for production...
+```bash
+# 克隆仓库
+git clone https://github.com/Run-os/siyuan-flashcard-title-toolbox-plugin.git
+cd siyuan-flashcard-title-toolbox-plugin
 
-  watching for file changes...
+# 安装依赖
+pnpm install
 
-  build started...
-  ✓ 26 modules transformed.
-  rendering chunks (1)...LiveReload enabled
-  ../../Siyuan-plugin/data/plugins/plugin-sample-vite-vue/index.css    1.08 kB │ gzip:  0.41 kB
-  ../../Siyuan-plugin/data/plugins/plugin-sample-vite-vue/index.js   198.60 kB │ gzip: 46.59 kB
-  [vite-plugin-static-copy] Copied 7 items.
-  built in 502ms.
-  ```
-
-
-   If successed, restart your siyuan, and you will find the plugin in `Siyuan - Settings - Marketplace`, named as `plugin-sample-vite-vue`.
-6. Enable the plugin, and check the `App.vue` file to start your development.
-   
-   This file contains some example codes.
-
-
-> [!TIP]
->
-> More plugin code examples, please check [siyuan/plugin-sample/src/index.ts](https://github.com/siyuan-note/plugin-sample/blob/main/src/index.ts)
-
-
-
-## List on the Marketplace
-
-### Use Github Action
-
-1. You can create a new tag, use your new version number as the `Tag version` in your local.
-2. Then push the tag to Github. The Github Action will create a new Release for you.
-
-> [!TIP]
->
-> <div id="release-script"></div>This template provided a script to auto create tag and release. You can use `pnpm release` to create a patch version.
->
-> You can add `--mode=manual|patch|minor|major` arg to set release mode, or run with arg like `pnpm release:manual`. 
-> 
-> All the scripts please see the `package.json` file.
-
-The github action is included in this sample, you can use it to publish your new realse to marketplace automatically:
-
-1. In your repo setting page `https://github.com/OWNER/REPO/settings/actions`, down to Workflow Permissions and open the configuration like this:
-
-![img](./asset/action.png)
-
-2. Push a tag in the format `v*` and github will automatically create a new release with new bulit package.zip
-3. By default, it will only publish a pre-release, if you don't think this is necessary, change the settings in release.yml
-
-```yaml
-- name: Release
-    uses: ncipollo/release-action@v1
-    with.
-        allowUpdates: true
-        artifactErrorsFailBuild: true
-        artifacts: 'package.zip'
-        token: ${{ secrets.GITHUB_TOKEN }}
-        prerelease: true # change this to false
+# 复制环境配置文件
+cp .env.example .env
 ```
 
-### Manual
+编辑 `.env` 文件，将 `VITE_SIYUAN_WORKSPACE_PATH` 设置为您的思源工作空间路径。
 
-1. Use `pnpm build` to generate `package.zip`
-2. Create a new Github release using your new version number as the "Tag version". See here for an example: https://github.com/siyuan-note/plugin-sample/releases
-3. Upload the file package.zip as binary attachments
-4. Publish the release
+### 开发模式
 
-> [!NOTE]
-> If it is the first release, please create a pull request to the [Community Bazaar](https://github.com/siyuan-note/bazaar) repository and modify the plugins.json file in it. This file is the index of all community plugin repositories, the format is:
-
-```json
-{
-  "repos": [
-    "username/reponame"
-  ]
-}
+```bash
+pnpm dev
 ```
 
----
+此命令将构建插件并监听文件变化。当您修改源代码时，插件会自动重新构建。
 
-More other plugin info, please check in [siyuan/plugin-sample](https://github.com/siyuan-note/plugin-sample).
+### 构建
+
+```bash
+pnpm build
+```
+
+此命令将在项目根目录生成 `package.zip`。
+
+## 技术细节
+
+- 使用 **Vite** 和 **Vue 3** 构建
+- 使用思源块属性存储自定义标题（`custom-riff-title`）
+- 使用 MutationObserver 动态检测闪卡
+- 同时支持桌面端和移动端环境
+
+## 贡献
+
+欢迎贡献代码！请随时提交 Pull Request。
+
+## 许可证
+
+[MIT License](./LICENSE)
+
+## 相关链接
+
+- [思源笔记](https://b3log.org/siyuan/)
+- [插件开发指南](https://github.com/siyuan-note/plugin-sample)

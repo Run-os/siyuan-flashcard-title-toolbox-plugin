@@ -214,7 +214,7 @@ onMounted(() => {
 
 <!-- 全局样式 -->
 <style lang="scss">
-.plugin-sample-vite-vue-app {
+.siyuan-flashcard-title-toolbox-plugin-app {
   width: 100vw;
   height: 100dvh;
   max-height: 100vh;

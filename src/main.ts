@@ -26,8 +26,8 @@ export function init(plugin: Plugin) {
   usePlugin(plugin);
 
   appDiv = document.createElement('div');
-  appDiv.classList.add('plugin-sample-vite-vue-app');
-  appDiv.id = 'plugin-sample-vite-vue-app';
+  appDiv.classList.add('siyuan-flashcard-title-toolbox-plugin-app');
+  appDiv.id = 'siyuan-flashcard-title-toolbox-plugin-app';
   app = createApp(App);
   app.mount(appDiv);
   document.body.appendChild(appDiv);

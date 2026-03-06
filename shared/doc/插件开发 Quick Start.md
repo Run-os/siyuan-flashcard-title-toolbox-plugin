@@ -64,7 +64,7 @@ START UP
     *   使用 **vite** 打包项目，并内置了对 **svelte** 的支持
     *   💡 **更推荐使用**
     *   提供了软链接、热重载等功能；内置 typescript 类型声明、一系列 util 函数；内置一系列 svelte 组件
-*   [SiYuan plugin sample (Vite & Vue)](https://ld246.com/forward?goto=https%3A%2F%2Fgithub.com%2Fsiyuan-note%2Fplugin-sample-vite-vue)
+*   [SiYuan plugin sample (Vite & Vue)](https://ld246.com/forward?goto=https%3A%2F%2Fgithub.com%2Fsiyuan-note%2Fsiyuan-flashcard-title-toolbox-plugin)
     
     *   使用 **vite** 打包项目，并内置了对 **vue** 的支持
     *   💡 **更推荐使用**

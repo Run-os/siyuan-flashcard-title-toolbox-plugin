@@ -1,8 +1,8 @@
 {
-  "name": "plugin-sample-vite-vue",
+  "name": "siyuan-flashcard-title-toolbox-plugin",
   "version": "0.0.1",
   "type": "module",
-  "description": "This is a sample plugin based on vite and vue for Siyuan (https://b3log.org/siyuan)",
+  "description": "A toolbox plugin for managing flashcard titles in SiYuan Note",
   "author": "",
   "license": "MIT",
   "homepage": "",
