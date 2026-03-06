@@ -1,6 +1,6 @@
 {
   "name": "siyuan-flashcard-title-toolbox-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "A toolbox plugin for managing flashcard titles in SiYuan Note",
   "author": "",
