@@ -2,9 +2,9 @@
 
 思源笔记中管理闪卡标题的工具箱插件。帮助您自定义、编辑和管理闪卡标题。
 
-![](./asset/readme1.png)
+![1](./asset/readme1.png)
 
-<video src="asset\PixPin_2026-03-06_23-26-52.mp4" width="600" controls></video>
+![演示视频](asset\PixPin_2026-03-06_23-26-52[00h00m00s-00h00m20s].gif)
 
 ## 功能特性
 
