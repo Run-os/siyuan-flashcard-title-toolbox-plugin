@@ -21,7 +21,8 @@ import {
   filterInvalidChars,
   isHeadingElement,
   getHeadingTextElement,
-  getCustomTitle
+  getCustomTitle,
+  isInReviewInterface
 } from './utils';
 import { getBlockAttrs, setBlockAttrs, getBlockByID } from '../../api';
 
@@ -148,6 +149,11 @@ const scanEditorTitleHints = () => {
   cardElements.forEach((cardElement) => {
     // 检查是否在编辑界面
     if (!isElementInEditorInterface(cardElement)) {
+      return;
+    }
+    
+    // 排除闪卡界面（复习界面由 replaceFlashcardTitle 处理）
+    if (isInReviewInterface(cardElement)) {
       return;
     }
     
