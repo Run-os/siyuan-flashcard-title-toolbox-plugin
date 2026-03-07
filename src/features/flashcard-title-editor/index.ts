@@ -11,7 +11,10 @@ import {
   TIP_SAVE_SUCCESS,
   TIP_SAVE_FAILED,
   FLASHCARD_TITLE_ATTR,
-  TITLE_REPLACED_FLAG
+  TITLE_REPLACED_FLAG,
+  EDITOR_TITLE_HINT_ATTR,
+  EDITOR_INTERFACE_ATTR,
+  EDITOR_INTERFACE_VALUE
 } from './constants';
 import {
   isMobileEnv,
@@ -45,29 +48,40 @@ const initMutationObserver = () => {
   editorObserver = new MutationObserver((mutations) => {
     // 检查是否有新的 protyle-wysiwyg 元素出现
     let shouldScan = false;
+    let shouldScanTitleHints = false;
     for (const mutation of mutations) {
       if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
         for (const node of Array.from(mutation.addedNodes)) {
           if (node instanceof HTMLElement) {
             // 检查是否是编辑器相关元素
-            if (node.classList?.contains('protyle-wysiwyg') || 
+            if (node.classList?.contains('protyle-wysiwyg') ||
                 node.querySelector?.('.protyle-wysiwyg') ||
                 node.hasAttribute?.('custom-riff-decks')) {
               shouldScan = true;
+              shouldScanTitleHints = true;
               break;
             }
           }
         }
       }
-      if (mutation.type === 'attributes' && 
-          (mutation.attributeName === 'custom-riff-decks' || 
-           mutation.attributeName === 'data-node-id')) {
-        shouldScan = true;
+      if (mutation.type === 'attributes') {
+        if (mutation.attributeName === 'custom-riff-decks' ||
+            mutation.attributeName === 'data-node-id') {
+          shouldScan = true;
+          shouldScanTitleHints = true;
+        }
+        // 监听 custom-riff-title 属性变化
+        if (mutation.attributeName === 'custom-riff-title') {
+          shouldScanTitleHints = true;
+        }
       }
-      if (shouldScan) break;
+      if (shouldScan && shouldScanTitleHints) break;
     }
     if (shouldScan) {
       scanEditorFlashcards();
+    }
+    if (shouldScanTitleHints) {
+      scanEditorTitleHints();
     }
   });
 
@@ -76,11 +90,12 @@ const initMutationObserver = () => {
     childList: true,
     subtree: true,
     attributes: true,
-    attributeFilter: ['custom-riff-decks', 'data-node-id']
+    attributeFilter: ['custom-riff-decks', 'data-node-id', 'custom-riff-title']
   });
 
   // 立即扫描一次
   scanEditorFlashcards();
+  scanEditorTitleHints();
 };
 
 const scanEditorFlashcards = () => {
@@ -102,6 +117,63 @@ const scanEditorFlashcards = () => {
     // 创建按钮（使用思源的 protyle-attr__btn 样式）
     const editButton = createEditButton(blockId);
     protyleAttr.appendChild(editButton);
+  });
+};
+
+// ========== 编辑界面标题提示功能 ==========
+
+/**
+ * 检查元素是否在编辑界面
+ * @param element 待检查元素
+ * @returns 是否在编辑界面内
+ */
+const isElementInEditorInterface = (element: HTMLElement): boolean => {
+  let parent = element.parentElement;
+  while (parent) {
+    if (parent.getAttribute(EDITOR_INTERFACE_ATTR) === EDITOR_INTERFACE_VALUE) {
+      return true;
+    }
+    parent = parent.parentElement;
+  }
+  return false;
+};
+
+/**
+ * 扫描编辑界面的闪卡标题提示
+ * 在闪卡的第一个标题块末尾显示替代标题（使用 CSS 伪元素）
+ */
+const scanEditorTitleHints = () => {
+  // 查找所有闪卡
+  const cardElements = document.querySelectorAll<HTMLElement>('[custom-riff-decks]');
+  
+  cardElements.forEach((cardElement) => {
+    // 检查是否在编辑界面
+    if (!isElementInEditorInterface(cardElement)) {
+      return;
+    }
+    
+    // 查找第一个标题块
+    const headingElement = cardElement.querySelector<HTMLElement>('[data-type="NodeHeading"]');
+    if (!headingElement) {
+      return;
+    }
+    
+    // 获取标题文本元素（contenteditable）
+    const textElement = headingElement.querySelector<HTMLElement>('div[contenteditable="true"]');
+    if (!textElement) {
+      return;
+    }
+    
+    // 获取 custom-riff-title 值
+    const customTitle = cardElement.getAttribute('custom-riff-title');
+    
+    if (customTitle && customTitle.trim()) {
+      // 设置 data 属性，CSS 会自动显示伪元素
+      textElement.setAttribute(EDITOR_TITLE_HINT_ATTR, customTitle.trim());
+    } else {
+      // 移除 data 属性
+      textElement.removeAttribute(EDITOR_TITLE_HINT_ATTR);
+    }
   });
 };
 
@@ -432,5 +504,10 @@ export const cleanup = () => {
   // 移除已替换标记
   document.querySelectorAll(`[${TITLE_REPLACED_FLAG}]`).forEach((el) => {
     el.removeAttribute(TITLE_REPLACED_FLAG);
+  });
+  
+  // 移除编辑界面标题提示属性
+  document.querySelectorAll(`[${EDITOR_TITLE_HINT_ATTR}]`).forEach((el) => {
+    el.removeAttribute(EDITOR_TITLE_HINT_ATTR);
   });
 };

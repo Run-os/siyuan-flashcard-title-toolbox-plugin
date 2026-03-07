@@ -9,3 +9,44 @@
   display: flex !important;
   align-items: center !important;
 }
+
+// ========== 编辑界面闪卡标题提示样式 ==========
+// 使用 CSS 伪元素显示替代标题
+[data-custom-title]::after {
+  content: '@@「' attr(data-custom-title) '」';
+  color: var(--b3-card-info-color, #5b80a8);
+  font-size: 0.85em;
+  opacity: 0.8;
+  margin-left: 2px;
+}
+
+// 编辑时隐藏提示（聚焦状态）
+[data-custom-title]:focus::after {
+  content: none;
+}
+
+// 兼容 :focus-within（如果焦点在父元素上）
+[data-custom-title]:focus-within::after {
+  content: none;
+}
+
+// ========== 编辑界面闪卡标题提示样式 ==========
+// 使用 CSS 伪元素在标题末尾显示替代标题
+// 格式：原标题@@「替代标题」
+[data-custom-title]::after {
+  content: '@@「' attr(data-custom-title) '」';
+  color: var(--b3-card-info-color, #5b80a8);
+  font-size: 0.85em;
+  opacity: 0.8;
+  margin-left: 2px;
+}
+
+// 编辑时隐藏提示（聚焦状态）
+[data-custom-title]:focus::after {
+  content: none;
+}
+
+// 兼容 :focus-within（如果焦点在父元素上）
+[data-custom-title]:focus-within::after {
+  content: none;
+}

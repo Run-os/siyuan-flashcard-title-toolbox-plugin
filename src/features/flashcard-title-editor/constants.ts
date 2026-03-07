@@ -46,3 +46,7 @@ export const REVIEW_INTERFACE_VALUE = 'dialog-opencard';
 // 编辑器界面标识属性（父级元素）
 export const EDITOR_INTERFACE_ATTR = 'data-loading';
 export const EDITOR_INTERFACE_VALUE = 'finished';
+
+// ========== 编辑界面标题提示相关 ==========
+// 用于存储替代标题的 data 属性名
+export const EDITOR_TITLE_HINT_ATTR = 'data-custom-title';
