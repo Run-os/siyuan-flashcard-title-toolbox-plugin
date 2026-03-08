@@ -1,6 +1,6 @@
 {
   "name": "sy-flashcard-toolbox-plugin",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "type": "module",
   "description": "A toolbox plugin for managing flashcard in SiYuan Note",
   "author": "",
