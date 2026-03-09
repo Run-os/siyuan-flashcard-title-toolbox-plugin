@@ -253,6 +253,9 @@ const handleReviewTitle = async (
     return;
   }
 
+  // 添加编辑按钮（闪卡界面也需要）
+  addEditButtonToElement(element);
+
   // 获取第一个子元素
   // 如果是超级块，需要在子元素中查找；否则 firstTitleChild 就是 cardElement 自身
   let firstTitleChild: HTMLElement | null;
